@@ -186,3 +186,18 @@ CREATE TABLE weathers (
 
 GRANT ALL ON weathers, weathers_wid_seq TO ${dbuser};
 ```
+```
+CREATE SEQUENCE location_status_lsid_seq;
+
+CREATE TABLE location_status (
+    lsid                 integer PRIMARY KEY DEFAULT nextval('location_status_lsid_seq'),
+    lid                  integer REFERENCES locations(lid),
+    location_status      text,
+    created_at           timestamp,
+    created_by           text,
+    updated_at           timestamp DEFAULT current_timestamp,
+    updated_by           text
+);
+
+GRANT ALL ON location_status, location_status_lsid_seq TO ${dbuser};
+```
