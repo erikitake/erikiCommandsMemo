@@ -79,6 +79,7 @@ alter database ${dbname} owner to ${dbuser};
 Update
 ```
 update user_profile sete email = 'xxx@xxx' whre uid = '280025';
+update location_status set location_status = 'out' where lsid = '264';
 ```
 Insert
 ```
@@ -91,6 +92,13 @@ insert into temperatures (updated_at) values (('2021-06-27T01:02:10Z') at time z
 ```
 select * into hr_members_backup from hr_members;
 ```
+
+テーブル削除
+DROP TABLE IF EXISTS <tableName>
+
+シーケンス削除
+DROP SEQUENCE IF EXISTS <sequenceName>
+
 
 ### SQL
 シーケンス作成
@@ -193,6 +201,7 @@ CREATE TABLE location_status (
     lsid                 integer PRIMARY KEY DEFAULT nextval('location_status_lsid_seq'),
     lid                  integer REFERENCES locations(lid),
     location_status      text,
+    location_at          text,
     created_at           timestamp,
     created_by           text,
     updated_at           timestamp DEFAULT current_timestamp,
